@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InputComponent } from "../input/input.component";
 
 @Component({
@@ -10,4 +10,9 @@ import { InputComponent } from "../input/input.component";
 })
 export class TodolistComponent {
  @Input() todo:{todo:string,id:number}[] = [];
+ @Output() deleteTodo = new EventEmitter<any>();
+
+ delete(id: number) {
+   this.deleteTodo.emit(id);
+ }
 }

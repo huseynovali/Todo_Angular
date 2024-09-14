@@ -11,16 +11,18 @@ import { TodolistComponent } from '../todolist/todolist.component';
 })
 export class TodoComponent {
   Todo: { todo: string; id: number }[] = JSON.parse(
-    localStorage.getItem('todo') ?? '[]'
+    localStorage.getItem('todo') || '[]'
   );
   addTodo(todo: { id: number; todo: string }) {
-    if (todo.todo == '') {
-      alert('todo required !');
+    if (!todo.todo.trim()) {
+      alert('Todo is required!');
       return;
     }
-    this.Todo.push(todo);
+    this.Todo = [...this.Todo, todo];
+    localStorage.setItem('todo', JSON.stringify(this.Todo));
   }
   deleteTodo(id: number) {
-    this.Todo = [...this.Todo.filter((item) => item.id !== id)];
+    this.Todo = this.Todo.filter((todo) => todo.id !== id);
+    localStorage.setItem('todo', JSON.stringify(this.Todo));
   }
 }
