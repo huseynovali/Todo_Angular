@@ -1,1 +1,17 @@
-<p>input works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+    <div class="flex border border-[#aaa] rounded-md">
+      <input
+        type="text"
+        class="w-full rounded-s-md"
+        formControlName="todo"
+        [value]="profileForm.value.todo"
+      />
+      <button
+        type="submit"
+        class="px-4 py-1 bg-slate-400 text-white rounded-e-md"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+  
